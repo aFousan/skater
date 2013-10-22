@@ -4,6 +4,7 @@
  */
 package com.afousan.init;
 
+import com.afousan.controller.CookieInterceptor;
 import java.util.Locale;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -24,12 +25,13 @@ import org.springframework.web.servlet.view.JstlView;
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan("com.afousan.controller")
+@ComponentScan("com.afousan")
 public class WebAppConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/static/").addResourceLocations("/static/**").setCachePeriod(31556926);
+        registry.addResourceHandler("/static/**").addResourceLocations("/static/").setCachePeriod(31556926);
+        registry.addResourceHandler("/static/**").addResourceLocations("/static/").setCachePeriod(31556926);
     }
 
     @Override
@@ -61,7 +63,9 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
     @Bean
     public ResourceBundleMessageSource messageSource(){
         ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-        messageSource.setBasename("messages");
+        messageSource.setBasename("messages");        
         return messageSource;
     }
+    
+    
 }

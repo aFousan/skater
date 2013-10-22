@@ -19,23 +19,28 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @Configuration
 @EnableTransactionManagement
-@ComponentScan("com.afousan.service")
+@ComponentScan("com.afousan")
 @PropertySource("classpath:redis.properties")
 public class RootConfig {
 
-    private @Value("${redis.host}")
-    String redis_host;
-    private @Value("${redis.port}")
-    int redis_port;
-    private @Value("${resid.pass}")
-    String redis_pass;
-
+//    private @Value("${redis.host}")
+//    String redis_host;
+//    private @Value("${redis.port}")
+//    int redis_port;
+//    private @Value("${resid.pass}")
+//    String redis_pass;
+    
+    private static final String redis_host = "${redis.host}";
+    private static final String redis_port = "${redis.port}";
+    private static final String redis_pass = "${redis.pass}";
+    
     @Bean
     public JedisConnectionFactory jedisConnectionFactory() {
         JedisConnectionFactory jcFactory = new JedisConnectionFactory();
-        jcFactory.setHostName(redis_host);
-        jcFactory.setPort(redis_port);
-        jcFactory.setPassword(redis_pass);
+        jcFactory.setHostName("localhost");
+        jcFactory.setPort(6379);
+        jcFactory.setPassword("");
+        jcFactory.setUsePool(true);
         return jcFactory;
     }
 

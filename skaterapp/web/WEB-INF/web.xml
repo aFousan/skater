@@ -23,4 +23,30 @@
     <welcome-file-list>
         <welcome-file>redirect.jsp</welcome-file>
     </welcome-file-list> -->
+    
+    <session-config>
+        <session-timeout>10</session-timeout>
+    </session-config>
+
+    <error-page>
+        <exception-type>java.lang.Exception</exception-type>
+        <!-- Displays a stack trace -->
+        <location>/WEB-INF/jsp/oops.jsp</location>
+    </error-page>
+
+    <!-- eliminate welcome files -->
+    <!-- useful for Servlet 3 container (Tomcat 7 and Jetty 6) -->
+    <welcome-file-list>
+        <welcome-file></welcome-file>
+    </welcome-file-list>
+
+    <jsp-config>
+        <jsp-property-group>
+            <description>Basic header/footer templating</description>
+            <url-pattern>*.jsp</url-pattern>
+            <el-ignored>false</el-ignored>
+            <include-prelude>/WEB-INF/templates/header.jspf</include-prelude>
+            <include-coda>/WEB-INF/templates/footer.jspf</include-coda>
+        </jsp-property-group>
+    </jsp-config>
 </web-app>
